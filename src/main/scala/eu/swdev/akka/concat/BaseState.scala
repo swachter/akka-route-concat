@@ -22,9 +22,9 @@ abstract class BaseState(depth: Int, branches: Int) {
 
   import system.dispatcher
 
-  def buildRoutes(depth: Int, branches: Int): Routes = {
+  def buildRoutes(depth: Int): Routes = {
     if (depth > 0) {
-      val inner = buildRoutes(depth - 1, branches)
+      val inner = buildRoutes(depth - 1)
       (0 until branches).map { i =>
         inner.below(pathPrefix(('A'.toInt + i).toChar.toString))
       }.reduce(_ concat _)
@@ -40,7 +40,7 @@ abstract class BaseState(depth: Int, branches: Int) {
 
 
 
-  val routes = buildRoutes(depth, branches)
+  val routes = buildRoutes(depth)
 
   val genRequestCtx = Gen
       .listOfN(depth, Gen.choose(0, branches - 1).map(i => (i + 'A').toChar.toString))
