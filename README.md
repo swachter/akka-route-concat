@@ -1,5 +1,5 @@
-Measures different implementations of route concatentation operators
-====================================================================
+Measures different implementations of route concatenation operators
+===================================================================
 
 * route1: ops class is value class + by-name 2nd arg
 * route2: ops class is value class
